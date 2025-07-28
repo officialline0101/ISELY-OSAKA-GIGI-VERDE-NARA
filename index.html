@@ -1336,9 +1336,13 @@ if (isBaindSelected) {
             optionsPrice = 0;          // オプションの価格リセット
             totalAmount = 0;           // 合計金額リセット
 
-            // 表示を更新
-            updateDisplayInfo();
-        }
+    // ✅ venueとweddingDateの値をリセット
+    document.getElementById('venue').value = '';
+    document.getElementById('weddingDate').value = '';
+
+    // 表示を更新
+    updateDisplayInfo();
+}
 
         function selectDate(cell) {
             // "unavailable" クラスが付いている場合はクリックを無効化
