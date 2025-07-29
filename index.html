@@ -1298,50 +1298,51 @@ if (isBaindSelected) {
             fetchAvailability(currentDate);
         }
 
-        function showMenu(menu) {
-            // `treatment-text` を非表示にする
-            document.getElementById("treatment-text").style.display = "none";
+function showMenu(menu) {
+    // `treatment-text` を非表示
+    document.getElementById("treatment-text").style.display = "none";
 
-            // 選択されたメニューの名前を取得
-            let selectedButton = document.querySelector(`.menu-sections button[onclick="showMenu('${menu}')"]`);
-            if (selectedButton) {
-                selectedMenu = selectedButton.innerText;
-            }
+    // 選択されたメニューの名前を取得
+    let selectedButton = document.querySelector(`.menu-sections button[onclick="showMenu('${menu}')"]`);
+    if (selectedButton) {
+        selectedMenu = selectedButton.innerText;
+    }
 
-            // すべてのメニューボタンの選択状態をリセット
-            document.querySelectorAll('.menu-sections button').forEach(button => {
-                button.classList.remove('active');
-            });
+    // 土日ブロック対象か判定
+    disableWeekend = (selectedMenu === '婚礼相談' || selectedMenu === '押し花の相談');
 
-            // 選択されたメニューセクションを表示
-            document.querySelectorAll('.menu-section').forEach(section => {
-                section.classList.remove('active');
-            });
+    // ボタンの選択状態をリセット
+    document.querySelectorAll('.menu-sections button').forEach(button => {
+        button.classList.remove('active');
+    });
 
-            // 対応するメニューボタンを選択状態にする
-            if (selectedButton) {
-                selectedButton.classList.add('active');
-            }
+    // セクションの表示を切り替え
+    document.querySelectorAll('.menu-section').forEach(section => {
+        section.classList.remove('active');
+    });
 
-            // 選択されたメニューセクションを表示
-            document.getElementById(menu).classList.add('active');
+    if (selectedButton) {
+        selectedButton.classList.add('active');
+    }
+    document.getElementById(menu).classList.add('active');
 
-            // `treatment-text` の内容をリセット
-            document.getElementById("treatment-text").innerHTML = "";
+    // その他初期化
+    document.getElementById("treatment-text").innerHTML = "";
+    selectedSymptom = '';
+    irradiationsCount = '';
+    menuPrice = 0;
+    optionsPrice = 0;
+    totalAmount = 0;
 
-            // メニューとオプションをリセット
-            selectedSymptom = '';      // メニューのリセット
-            irradiationsCount = '';    // オプションのリセット
-            menuPrice = 0;             // メニューの価格リセット
-            optionsPrice = 0;          // オプションの価格リセット
-            totalAmount = 0;           // 合計金額リセット
-
-    // ✅ venueとweddingDateの値をリセット
+    // 会場・婚礼日を初期化
     document.getElementById('venue').value = '';
     document.getElementById('weddingDate').value = '';
 
-    // 表示を更新
+    // 表示を更新（ラベルなど）
     updateDisplayInfo();
+
+    // 🔁 カレンダー再描画（これが今回のポイント）
+    fetchAvailability(currentDate);
 }
 
         function selectDate(cell) {
@@ -1561,6 +1562,13 @@ function submitForm() {
                         cell.classList.add('unavailable');
                         continue;
                     }
+
+// 土日ブロック設定がONの場合、土曜(6)・日曜(0)は×にする
+if (disableWeekend && (slotStart.getDay() === 0 || slotStart.getDay() === 6)) {
+    cell.textContent = '✕';
+    cell.classList.add('unavailable');
+    continue;
+}
 
                     // 終了時間が翌日 (0時以降) になる場合は✕に設定
                     if (slotEnd.getDate() !== slotStart.getDate()) {
