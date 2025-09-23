@@ -1555,13 +1555,6 @@ function submitForm() {
                     // メニュー時間と訪問回数の時間を合計して、終了時間を設定
                     slotEnd.setMinutes(slotStart.getMinutes() + menuDuration + visitDuration + irradiationsDuration);
 
-// 土日ブロック設定がONの場合、土曜(6)・日曜(0)は×にする
-if (disableWeekend && (slotStart.getDay() === 0 || slotStart.getDay() === 6)) {
-    cell.textContent = '✕';
-    cell.classList.add('unavailable');
-    continue;
-}
-
                     // 終了時間が翌日 (0時以降) になる場合は✕に設定
                     if (slotEnd.getDate() !== slotStart.getDate()) {
                         cell.textContent = '✕';
