@@ -1225,7 +1225,7 @@ if (isBaindSelected) {
                 const formattedList = selectedSymptom
                     .map(item => `・《${item.category}》${item.name}`)
                     .join('<br>');
-                selectedMenusDisplay.innerHTML = `【選択中のメニュー(最大3つまで)】<br>${formattedList}`;
+                selectedMenusDisplay.innerHTML = `【選択中のメニュー】<br>${formattedList}`;
                 selectedMenusDisplay.style.display = 'block';
             } else {
                 selectedMenusDisplay.innerHTML = '';
