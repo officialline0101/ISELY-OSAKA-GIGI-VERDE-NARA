@@ -1070,7 +1070,7 @@ if (isToday) {
 
             liff.sendMessages([{ type: 'text', text: text }])
             .then(() => {
-                alert('予約を受け付けました。');
+                alert('当日キャンセルは無いようにお願いいたします。');
                 liff.closeWindow();
             }).catch((err) => {
                 console.error('送信失敗', err);
