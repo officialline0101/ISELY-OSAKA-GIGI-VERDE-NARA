@@ -1329,6 +1329,11 @@
 
             text += `\n希望日時：\n${formData.dates}\nメッセージ：\n${formData.message}`;
 
+            // 来店引取りの場合のみ決済ステータスを追加
+            if (selectedMenu === '来店引取り') {
+                text += `\n\n決済ステータス：決済完了待ち`;
+            }
+
             // LINE送信処理
             liff.sendMessages([{ type: 'text', text: text }])
                 .then(() => {
