@@ -566,9 +566,13 @@
         <div class="info-text">※メニューを選択すると空き状況のカレンダーが表示されます</div>
 
         <div class="menu-sections">
+            <button type="button" class="img-btn" onclick="showMenu('raiten')">
+                <img src="https://www.dropbox.com/scl/fi/dl5vcaz74zeisccu3w0d3/.jpg?rlkey=m5u0pf4ynsxoj38yuq7cvjy3h&st=mj1o50ip&raw=1" alt="来店予約">
+                <span>来店予約</span>
+            </button>
             <button type="button" class="img-btn" onclick="showMenu('male')">
-                <img src="https://www.dropbox.com/scl/fi/qvh7o5dlt4mbh85xknpkw/.jpg?rlkey=03fltjt33d8pyo7avvhiuqjky&st=4b95cvzj&raw=1" alt="来店引取り">
-                <span>来店引取り</span>
+                <img src="https://www.dropbox.com/scl/fi/qvh7o5dlt4mbh85xknpkw/.jpg?rlkey=03fltjt33d8pyo7avvhiuqjky&st=4b95cvzj&raw=1" alt="注文予約">
+                <span>注文予約</span>
             </button>
             <button type="button" class="img-btn" onclick="showMenu('whitening')">
                 <img src="https://www.dropbox.com/scl/fi/8pm3lycpyhmh8ivttud21/.jpg?rlkey=y73svijulcbq7w83aajvv3c0e&st=9aa7v6zs&raw=1" alt="押し花の相談">
@@ -579,9 +583,36 @@
         <div id="selected-menus-display" style="display: none;"></div>
         <div id="treatment-text" style="display: none;"></div>
 
+        <!-- 来店予約セクション（決済不要） -->
+        <div id="raiten" class="menu-section">
+            <div class="highlight-background">
+                <span class="highlight-texthissu">来店予約詳細 <span class="required">*</span></span>
+            </div>
+            <div class="info-text">
+                ※決済不要です。ご希望の予算をご記入の上、ご予約ください。<br>
+                色合いに関しましては下の備考欄にご記入をお願いします。
+            </div>
+
+            <div id="raiten-step1">
+                <div class="section-label">種類をお選びください</div>
+                <div class="symptoms">
+                    <button type="button" onclick="selectRaitenType(this, '花束')">花束</button>
+                    <button type="button" onclick="selectRaitenType(this, 'アレンジメント')">アレンジメント</button>
+                </div>
+            </div>
+
+            <div id="raiten-step2" style="display: none; margin-top:30px;">
+                <div class="section-label">ご希望予算をご記入ください <span class="required">*</span></div>
+                <div class="input-group">
+                    <input type="text" id="raitenBudget" placeholder="例）5,000円くらい" oninput="onRaitenBudgetInput()">
+                    <label>希望予算 <span class="required">*</span></label>
+                </div>
+            </div>
+        </div>
+
         <div id="male" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-texthissu">来店引取り詳細 <span class="required">*</span></span>
+                <span class="highlight-texthissu">注文予約詳細 <span class="required">*</span></span>
             </div>
             <div class="info-text">
                 ※色合いに関しましては下に備考欄がございますのでそちらに記載をお願いします。<br>
@@ -831,11 +862,18 @@
                 detailText = selectedSymptom.map(item => item.name.replace(/\n/g, '')).join(', ');
             }
 
-            // 予算表示（来店引取りの場合）
+            // 予算表示（注文予約の場合）
             let budgetText = '';
-            if (selectedMenu === '来店引取り' && selectedBudgetPrice > 0) {
+            if (selectedMenu === '注文予約' && selectedBudgetPrice > 0) {
                 const total = selectedBudgetPrice + selectedOptionPrice;
                 budgetText = `¥${selectedBudgetPrice.toLocaleString()} (Op: ¥${selectedOptionPrice.toLocaleString()}) = 合計 ¥${total.toLocaleString()}`;
+            }
+            // 来店予約の場合は希望予算テキストを表示
+            if (selectedMenu === '来店予約') {
+                const raitenBudgetEl = document.getElementById('raitenBudget');
+                if (raitenBudgetEl && raitenBudgetEl.value.trim()) {
+                    budgetText = `希望予算：${raitenBudgetEl.value.trim()}`;
+                }
             }
 
             // 日時
@@ -910,10 +948,16 @@
             // 全詳細ボタンのactive解除
             document.querySelectorAll('.symptoms button, .irradiations button').forEach(b => b.classList.remove('active'));
 
-            // 来店引取り用のステップリセット
+            // 注文予約用のステップリセット
             if (menuId === 'male') {
                 document.getElementById('male-step2').style.display = 'none';
                 document.getElementById('male-step3').style.display = 'none';
+            }
+
+            // 来店予約用のステップリセット
+            if (menuId === 'raiten') {
+                document.getElementById('raiten-step2').style.display = 'none';
+                document.getElementById('raitenBudget').value = '';
             }
 
             // 会場・日時入力のリセット
@@ -928,7 +972,7 @@
             updateDisplayInfo();
         }
 
-        // --- 【新機能】来店引取り：花束・アレンジ選択 ---
+        // --- 【新機能】注文予約：花束・アレンジ選択 ---
         function selectFlowerType(button, typeName) {
             // 選択状態
             const parent = button.closest('.symptoms');
@@ -936,7 +980,7 @@
             button.classList.add('active');
 
             // データを保存
-            selectedSymptom = [{ category: '来店引取り', name: typeName }];
+            selectedSymptom = [{ category: '注文予約', name: typeName }];
 
             // 時間計算
             selectedMenuTime = menuTimes[typeName] || 30;
@@ -971,7 +1015,37 @@
             updateDisplayInfo();
         }
 
-        // --- 【新機能】来店引取り：予算選択 ---
+        // --- 【新機能】来店予約：花束・アレンジ選択 ---
+        function selectRaitenType(button, typeName) {
+            const parent = button.closest('.symptoms');
+            parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            button.classList.add('active');
+
+            selectedSymptom = [{ category: '来店予約', name: typeName }];
+            selectedMenuTime = menuTimes[typeName] || 30;
+
+            // 希望予算入力ステップを表示
+            document.getElementById('raiten-step2').style.display = 'block';
+
+            // カレンダーはまだ非表示
+            document.querySelector('.calendar-container').style.display = 'none';
+
+            updateDisplayInfo();
+        }
+
+        // --- 【新機能】来店予約：希望予算入力時 ---
+        function onRaitenBudgetInput() {
+            const budget = document.getElementById('raitenBudget').value.trim();
+            if (budget) {
+                document.querySelector('.calendar-container').style.display = 'block';
+                fetchAvailability(currentDate);
+            } else {
+                document.querySelector('.calendar-container').style.display = 'none';
+            }
+            updateDisplayInfo();
+        }
+
+        // --- 【新機能】注文予約：予算選択 ---
         function selectBudget(button, price) {
             // 選択状態
             const parent = button.closest('.budget-grid');
@@ -1002,7 +1076,7 @@
             updateDisplayInfo();
         }
 
-        // --- 【新機能】来店引取り：オプション選択 ---
+        // --- 【新機能】注文予約：オプション選択 ---
         function selectOption(button, price) {
             // 選択状態
             const parent = button.closest('.symptoms');
@@ -1327,10 +1401,18 @@
             if (!formData.phone) { alert('電話番号を入力してください。'); return; }
             if (!selectedMenu) { alert('メニューを選択してください。'); return; }
 
-            // 来店引取りの場合は予算チェック
-            if (selectedMenu === '来店引取り' && selectedBudgetPrice === 0) {
+            // 注文予約の場合は予算チェック
+            if (selectedMenu === '注文予約' && selectedBudgetPrice === 0) {
                 alert('ご予算を選択してください。');
                 return;
+            }
+            // 来店予約の場合は希望予算チェック
+            if (selectedMenu === '来店予約') {
+                const raitenBudget = document.getElementById('raitenBudget').value.trim();
+                if (!raitenBudget) {
+                    alert('希望予算をご記入ください。');
+                    return;
+                }
             }
             if (!selectedSymptom.length) { alert('詳細メニューを選択してください。'); return; }
             if (!formData.dates) { alert('希望日時を選択してください。'); return; }
@@ -1343,7 +1425,11 @@
 
             let finalUrl = '';
 
-            if (selectedMenu === '来店引取り') {
+            if (selectedMenu === '来店予約') {
+                // 来店予約の場合（決済不要）
+                const raitenBudget = document.getElementById('raitenBudget').value.trim();
+                text += `\nメニュー：${formData.details},希望予算${raitenBudget}`;
+            } else if (selectedMenu === '注文予約') {
                 const typeName = selectedSymptom[0].name.replace(/\n/g, ''); // 花束 or アレンジメント
                 text += `\nメニュー：${formData.details},予算${selectedBudgetPrice}円`;
 
@@ -1362,8 +1448,8 @@
 
             text += `\n希望日時：\n${formData.dates}\nメッセージ：\n${formData.message}`;
 
-            // 来店引取りの場合のみ決済ステータスを追加
-            if (selectedMenu === '来店引取り') {
+            // 注文予約の場合のみ決済ステータスを追加
+            if (selectedMenu === '注文予約') {
                 text += `\n\n決済ステータス：決済完了待ち`;
             }
 
