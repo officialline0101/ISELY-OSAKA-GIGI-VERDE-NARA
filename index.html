@@ -552,16 +552,6 @@
     <div class="container">
         <h1>GIGI VERDE NARA<span>RESERVATION FORM</span></h1>
 
-        <div class="input-group">
-            <input type="text" id="name" placeholder="例）田中 愛子" oninput="saveInput('name')">
-            <label>お客様名 <span class="required">*</span></label>
-        </div>
-
-        <div class="input-group">
-            <input type="tel" id="phone" placeholder="例）090-1234-5678" oninput="saveInput('phone')">
-            <label>電話番号 <span class="required">*</span></label>
-        </div>
-
         <div class="section-label" id="course">メニューをお選びください <span class="required">*</span></div>
         <div class="info-text">※メニューを選択すると空き状況のカレンダーが表示されます</div>
 
@@ -570,13 +560,13 @@
                 <img src="https://www.dropbox.com/scl/fi/dl5vcaz74zeisccu3w0d3/.jpg?rlkey=m5u0pf4ynsxoj38yuq7cvjy3h&st=mj1o50ip&raw=1" alt="来店予約">
                 <span>来店予約</span>
             </button>
-            <button type="button" class="img-btn" onclick="showMenu('male')">
-                <img src="https://www.dropbox.com/scl/fi/qvh7o5dlt4mbh85xknpkw/.jpg?rlkey=03fltjt33d8pyo7avvhiuqjky&st=4b95cvzj&raw=1" alt="注文予約">
-                <span>注文予約</span>
-            </button>
             <button type="button" class="img-btn" onclick="showMenu('whitening')">
                 <img src="https://www.dropbox.com/scl/fi/8pm3lycpyhmh8ivttud21/.jpg?rlkey=y73svijulcbq7w83aajvv3c0e&st=9aa7v6zs&raw=1" alt="押し花の相談">
                 <span>押し花の相談</span>
+            </button>
+            <button type="button" class="img-btn" onclick="showMenu('female')">
+                <img src="https://www.dropbox.com/scl/fi/zwit5pm3n9ij5n5qjv0ot/WEDDING.png?rlkey=j1e3m3e0sz7o8h7tjmaf1aets&st=srdwn1te&raw=1" alt="WEDDINGのご相談">
+                <span>WEDDINGの<br>ご相談</span>
             </button>
         </div>
 
@@ -610,86 +600,26 @@
             </div>
         </div>
 
-        <div id="male" class="menu-section">
-            <div class="highlight-background">
-                <span class="highlight-texthissu">注文予約詳細 <span class="required">*</span></span>
-            </div>
-            <div class="info-text">
-                ※色合いに関しましては下に備考欄がございますのでそちらに記載をお願いします。<br>
-                来店引き取りに関しましては1週間前までのご予約であれば対応できます。
-            </div>
-
-            <div id="male-step1">
-                <div class="section-label">種類をお選びください</div>
-                <div class="symptoms">
-                    <button type="button" onclick="selectFlowerType(this, '花束')">
-                        花束
-                    </button>
-                    <button type="button" onclick="selectFlowerType(this, 'アレンジメント')">
-                        アレンジメント
-                    </button>
-                </div>
-            </div>
-
-            <div id="male-step2" style="display: none; margin-top:30px;">
-                <div class="section-label">ご予算をお選びください（Square決済）</div>
-                <div class="irradiations budget-grid" id="budget-buttons">
-                    <button type="button" class="img-btn" onclick="selectBudget(this, 3300)"
-                        data-bouquet="https://www.dropbox.com/scl/fi/fhapwjrb3on5ndym57u84/3300.jpg?rlkey=fzz25njuc6hai3preaue6pgwu&st=m9ktbqfd&raw=1"
-                        data-arrangement="https://www.dropbox.com/scl/fi/4fp9bmbkq45egzxr927uf/3300.jpg?rlkey=19wnogaxck4a5wj3p8jbfksvg&st=9cbm7f1h&raw=1">
-                        <img src="" alt="3300円">
-                        <span>3,300円</span>
-                    </button>
-                    <button type="button" class="img-btn" onclick="selectBudget(this, 5500)"
-                        data-bouquet="https://www.dropbox.com/scl/fi/ddbwq46ju1fbrdxf6z6au/5500.jpg?rlkey=mhr4txibvcf5yi1trk8yy71y9&st=dnvn93vc&raw=1"
-                        data-arrangement="https://www.dropbox.com/scl/fi/ijq1jwqjxm0spthu3kd2o/5500.jpg?rlkey=8y1v282qrjouiinryiwemvdfm&st=lzz66ewx&raw=1">
-                        <img src="" alt="5500円">
-                        <span>5,500円</span>
-                    </button>
-                    <button type="button" class="img-btn" onclick="selectBudget(this, 8800)"
-                        data-bouquet="https://www.dropbox.com/scl/fi/zzdod82uoj63ulv4z5c57/8800.jpg?rlkey=ywjjjuy1gwbs6j114i7kwn2wa&st=ozmwpxgz&raw=1"
-                        data-arrangement="https://www.dropbox.com/scl/fi/m39p6hkecesrjy7fmz7vf/8800.jpg?rlkey=0kfb5rkxka1a2q7eulym6dbrh&st=01kcsas4&raw=1">
-                        <img src="" alt="8800円">
-                        <span>8,800円</span>
-                    </button>
-                    <button type="button" class="img-btn" onclick="selectBudget(this, 11000)"
-                        data-bouquet="https://www.dropbox.com/scl/fi/ezionzqab9u4hfh8hbilh/11000.jpg?rlkey=bejqmcq0obg4vb02zj9ntx08b&st=on3dll3j&raw=1"
-                        data-arrangement="https://www.dropbox.com/scl/fi/a09rwb98t7pstbzitx54p/11000.jpg?rlkey=fbs0zk210wgi615a8siq1lxpl&st=crqzjl72&raw=1">
-                        <img src="" alt="11000円">
-                        <span>11,000円</span>
-                    </button>
-                </div>
-            </div>
-
-            <div id="male-step3" style="display: none; margin-top:30px;">
-                <div class="section-label">オプション <span id="option-guide" class="guide-message">▶ 次はこちらをお選びください</span></div>
-                <div class="symptoms">
-                    <button type="button" class="img-btn" onclick="selectOption(this, 660)">
-                        <span>ラッピング・紙袋 660円</span>
-                    </button>
-                    <button type="button" class="img-btn" onclick="selectOption(this, 0)">
-                        <span>なし</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
         <div id="whitening" class="menu-section">
             <div class="highlight-background">
                 <span class="highlight-texthissu">押し花の相談詳細 <span class="required">*</span></span>
             </div>
-            <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this)" data-category="押し花の相談"
-                    data-price="15000">引取り</button>
-                <button type="button" onclick="selectSymptom(this)" data-category="押し花の相談"
-                    data-price="15000">持ち込み(注文済)</button>
-                <button type="button" onclick="selectSymptom(this)" data-category="押し花の相談"
-                    data-price="15000">持ち込み(ご相談)</button>
+            <div class="info-text">
+                ※日時のご予約は、送信後に表示されるAirリザーブのページでお願いいたします。
             </div>
+
+            <div id="whitening-step1">
+                <div class="symptoms">
+                    <button type="button" onclick="selectOshibanaDetail(this, '引取り')">引取り</button>
+                    <button type="button" onclick="selectOshibanaDetail(this, '持ち込み(注文済)')">持ち込み(注文済)</button>
+                    <button type="button" onclick="selectOshibanaDetail(this, '持ち込み(ご相談)')">持ち込み(ご相談)</button>
+                </div>
+            </div>
+
         </div>
 
         <div id="female" class="menu-section">
-            <div class="highlight-background"><span class="highlight-texthissu">婚礼相談詳細 <span
+            <div class="highlight-background"><span class="highlight-texthissu">WEDDINGのご相談詳細 <span
                         class="required">*</span></span></div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this)" data-category="婚礼相談"
@@ -721,7 +651,8 @@
             <label>備考欄</label>
         </div>
 
-        <div class="section-label">希望日時 <span class="required">*</span></div>
+        <div class="section-label" id="dateLabel">希望日時 <span class="required">*</span></div>
+        <div class="info-text" id="airReserveNote" style="display: none;">※「予約を行う」ボタンより日時選択へお進みいただけます。</div>
         <div class="calendar-container">
             <div class="current-month" id="currentMonth">--</div>
 
@@ -766,6 +697,7 @@
         </div>
 
         <button class="submit-button" onclick="submitForm()" id="section-message">予約を行う</button>
+        <div class="info-text" id="submitAirNote" style="display: none; margin-top: 12px; text-align: center;">※「予約を行う」ボタンより日時選択へお進みいただけます。</div>
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
@@ -774,21 +706,14 @@
         //  ISELY OSAKA Logic
         // ----------------------------------------------------------------------
 
-        // 【重要】Squareの決済リンク設定
-        const squareLinks = {
-            '花束': {
-                3300: { 660: 'https://square.link/u/HEdpZpI1', 0: 'https://square.link/u/dVsMWsjf' },
-                5500: { 660: 'https://square.link/u/f9w4PxlJ', 0: 'https://square.link/u/bYKAM0kZ' },
-                8800: { 660: 'https://square.link/u/NGApwq01', 0: 'https://square.link/u/Lr7Rx2Bb' },
-                11000: { 660: 'https://square.link/u/wHbALZUa', 0: 'https://square.link/u/lDGqaWdu' }
-            },
-            'アレンジメント': {
-                3300: { 660: 'https://square.link/u/HlYkY0oU', 0: 'https://square.link/u/1uSlkEzf' },
-                5500: { 660: 'https://square.link/u/Mh1Jpf27', 0: 'https://square.link/u/1Xryz4rx' },
-                8800: { 660: 'https://square.link/u/sqCVpall', 0: 'https://square.link/u/HXXZKj5U' },
-                11000: { 660: 'https://square.link/u/NArpbLzV', 0: 'https://square.link/u/hpiX000p' }
-            }
+        // Airリザーブ予約ページ（メニュー別）
+        const airReserveLinks = {
+            '来店予約': 'https://airrsv.net/gigiverde-nara/calendar?schdlId=s0000B4A25',
+            '押し花の相談': 'https://airrsv.net/gigiverde-nara/calendar?schdlId=s0000CBCC5'
         };
+
+        // 日時をAirリザーブ側で予約するメニュー（フォーム内カレンダーを使わない）
+        const airReserveDateMenus = ['押し花の相談'];
 
         let visitCount = '';
         let selectedMenu = '';
@@ -799,8 +724,7 @@
         let irradiationsCount = '';
         let menuPrice = 0;
         let optionsPrice = 0;
-        let selectedBudgetPrice = 0; // 追加：選択された予算
-        let selectedOptionPrice = 0; // 追加：選択されたオプション価格
+        let selectedOshibanaDetail = ''; // 押し花の相談 詳細（引取り/持ち込み）
 
         // メニュー時間の設定
         let menuTimes = {
@@ -827,22 +751,6 @@
             fetchAvailability(currentDate);
             document.querySelector('.calendar-container').style.display = 'none'; // 初期非表示
 
-            // 予算ボタンの全画像をプリロード（切替ラグ防止）
-            document.querySelectorAll('#budget-buttons button').forEach(b => {
-                ['data-bouquet', 'data-arrangement'].forEach(attr => {
-                    const url = b.getAttribute(attr);
-                    if (url) {
-                        const img = new Image();
-                        img.src = url;
-                    }
-                });
-            });
-
-            // ローカルストレージ復元
-            const savedName = localStorage.getItem('name');
-            const savedPhone = localStorage.getItem('phone');
-            if (savedName) document.getElementById('name').value = savedName;
-            if (savedPhone) document.getElementById('phone').value = savedPhone;
         });
 
         function saveInput(id) {
@@ -853,7 +761,6 @@
 
         // --- 表示更新関数 ---
         function updateDisplayInfo() {
-            const name = document.getElementById('name').value;
             const selectedMenuText = selectedMenu ? selectedMenu : '未選択';
 
             // 選択されたメニュー詳細
@@ -862,13 +769,8 @@
                 detailText = selectedSymptom.map(item => item.name.replace(/\n/g, '')).join(', ');
             }
 
-            // 予算表示（注文予約の場合）
-            let budgetText = '';
-            if (selectedMenu === '注文予約' && selectedBudgetPrice > 0) {
-                const total = selectedBudgetPrice + selectedOptionPrice;
-                budgetText = `¥${selectedBudgetPrice.toLocaleString()} (Op: ¥${selectedOptionPrice.toLocaleString()}) = 合計 ¥${total.toLocaleString()}`;
-            }
             // 来店予約の場合は希望予算テキストを表示
+            let budgetText = '';
             if (selectedMenu === '来店予約') {
                 const raitenBudgetEl = document.getElementById('raitenBudget');
                 if (raitenBudgetEl && raitenBudgetEl.value.trim()) {
@@ -881,10 +783,6 @@
 
             // HTML生成
             let htmlContent = `
-                <div class="info-row">
-                    <div class="info-content"><span class="info-label">お名前</span>${name || '-'}</div>
-                    <button class="edit-button" onclick="scrollToElement('name')">修正</button>
-                </div>
                 <div class="info-row">
                     <div class="info-content"><span class="info-label">選択コース</span>${selectedMenuText}</div>
                     <button class="edit-button" onclick="scrollToElement('course')">修正</button>
@@ -899,16 +797,19 @@
                 htmlContent += `
                 <div class="info-row">
                     <div class="info-content"><span class="info-label">ご予算</span>${budgetText}</div>
-                    <button class="edit-button" onclick="scrollToElement('male')">修正</button>
+                    <button class="edit-button" onclick="scrollToElement('raiten')">修正</button>
                 </div>`;
             }
 
-            htmlContent += `
+            // Airリザーブで日時を予約するメニューは、確認欄に希望日時を表示しない
+            if (!airReserveLinks[selectedMenu]) {
+                htmlContent += `
                 <div class="info-row">
                     <div class="info-content"><span class="info-label">希望日時</span>${selectedDateText}</div>
                     <button class="edit-button" onclick="scrollToElement('calendar1')">修正</button>
                 </div>
             `;
+            }
 
             document.getElementById('displayInfo').innerHTML = htmlContent;
         }
@@ -916,6 +817,26 @@
         function scrollToElement(id) {
             const element = document.getElementById(id) || document.querySelector('#' + id);
             if (element) element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // --- 希望日時セクションの表示切替 ---
+        // Airリザーブへ遷移するメニューは、フォーム内で日時を選ばないため
+        // 「希望日時」ラベルを案内文に差し替え、送信ボタン下にも案内を出す
+        function updateDateSection() {
+            const isAirReserve = !!airReserveLinks[selectedMenu];
+
+            const dateLabel = document.getElementById('dateLabel');
+            if (dateLabel) {
+                dateLabel.innerHTML = isAirReserve
+                    ? '希望日時'
+                    : '希望日時 <span class="required">*</span>';
+            }
+
+            const dateNote = document.getElementById('airReserveNote');
+            if (dateNote) dateNote.style.display = isAirReserve ? 'block' : 'none';
+
+            const submitNote = document.getElementById('submitAirNote');
+            if (submitNote) submitNote.style.display = isAirReserve ? 'block' : 'none';
         }
 
         // --- メニュー選択（大カテゴリ） ---
@@ -941,24 +862,21 @@
 
             // --- リセット処理 ---
             selectedSymptom = [];
-            selectedBudgetPrice = 0;
             menuPrice = 0;
             selectedFullDate = '';
+            selectedOshibanaDetail = '';
 
             // 全詳細ボタンのactive解除
             document.querySelectorAll('.symptoms button, .irradiations button').forEach(b => b.classList.remove('active'));
-
-            // 注文予約用のステップリセット
-            if (menuId === 'male') {
-                document.getElementById('male-step2').style.display = 'none';
-                document.getElementById('male-step3').style.display = 'none';
-            }
 
             // 来店予約用のステップリセット
             if (menuId === 'raiten') {
                 document.getElementById('raiten-step2').style.display = 'none';
                 document.getElementById('raitenBudget').value = '';
             }
+
+            // 希望日時セクション（ラベル・案内文）の切替
+            updateDateSection();
 
             // 会場・日時入力のリセット
             document.getElementById('venue').value = '';
@@ -968,49 +886,6 @@
 
             document.getElementById('selected-menus-display').style.display = 'none';
             document.querySelector('.calendar-container').style.display = 'none'; // カレンダー隠す
-
-            updateDisplayInfo();
-        }
-
-        // --- 【新機能】注文予約：花束・アレンジ選択 ---
-        function selectFlowerType(button, typeName) {
-            // 選択状態
-            const parent = button.closest('.symptoms');
-            parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-            button.classList.add('active');
-
-            // データを保存
-            selectedSymptom = [{ category: '注文予約', name: typeName }];
-
-            // 時間計算
-            selectedMenuTime = menuTimes[typeName] || 30;
-
-            // ステップ2（予算）を表示
-            document.getElementById('male-step2').style.display = 'block';
-
-            // 予算ボタンの画像を種類に応じて一括フェード切替
-            const imgAttr = typeName === '花束' ? 'data-bouquet' : 'data-arrangement';
-            const budgetBtns = document.querySelectorAll('#budget-buttons button');
-            // まず全画像を一斉にフェードアウト
-            budgetBtns.forEach(b => {
-                b.classList.remove('active');
-                const img = b.querySelector('img');
-                if (img) img.style.opacity = '0';
-            });
-            // フェードアウト完了後に一括でsrcを差し替えてフェードイン
-            setTimeout(() => {
-                budgetBtns.forEach(b => {
-                    const img = b.querySelector('img');
-                    if (img) {
-                        img.src = b.getAttribute(imgAttr) || '';
-                        img.style.opacity = '1';
-                    }
-                });
-            }, 200);
-            selectedBudgetPrice = 0;
-
-            // カレンダーはまだ表示しない（予算選択後）
-            document.querySelector('.calendar-container').style.display = 'none';
 
             updateDisplayInfo();
         }
@@ -1035,67 +910,33 @@
 
         // --- 【新機能】来店予約：希望予算入力時 ---
         function onRaitenBudgetInput() {
-            const budget = document.getElementById('raitenBudget').value.trim();
-            if (budget) {
-                document.querySelector('.calendar-container').style.display = 'block';
-                fetchAvailability(currentDate);
-            } else {
-                document.querySelector('.calendar-container').style.display = 'none';
-            }
-            updateDisplayInfo();
-        }
-
-        // --- 【新機能】注文予約：予算選択 ---
-        function selectBudget(button, price) {
-            // 選択状態
-            const parent = button.closest('.budget-grid');
-            parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-            button.classList.add('active');
-
-            // 金額保存
-            selectedBudgetPrice = price;
-
-            // オプションステップを表示
-            document.getElementById('male-step3').style.display = 'block';
-
-            // ガイドメッセージを表示
-            const guideMsg = document.getElementById('option-guide');
-            if (guideMsg) guideMsg.classList.add('show');
-
-            // オプション選択はリセット
-            const optParent = document.querySelector('#male-step3 .symptoms');
-            optParent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-            selectedOptionPrice = 0;
-
-            // カレンダーはまだ表示しない
+            // 来店予約は希望日時（カレンダー）不要のため表示しない
             document.querySelector('.calendar-container').style.display = 'none';
-
-            // オプションセクションへスクロール
-            document.getElementById('male-step3').scrollIntoView({ behavior: 'smooth', block: 'center' });
-
             updateDisplayInfo();
         }
 
-        // --- 【新機能】注文予約：オプション選択 ---
-        function selectOption(button, price) {
-            // 選択状態
+        // --- 【新機能】押し花の相談：詳細選択（引取り/持ち込み） ---
+        function selectOshibanaDetail(button, detailName) {
             const parent = button.closest('.symptoms');
             parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
             button.classList.add('active');
 
-            // オプション価格保存
-            selectedOptionPrice = price;
+            selectedOshibanaDetail = detailName;
+            selectedMenuTime = 30;
 
-            // ガイドメッセージを非表示
-            const guideMsg = document.getElementById('option-guide');
-            if (guideMsg) guideMsg.classList.remove('show');
+            // カレンダーは使わない（日時はAirリザーブで予約）
+            document.querySelector('.calendar-container').style.display = 'none';
 
-            // カレンダー表示
-            document.querySelector('.calendar-container').style.display = 'block';
-
-            fetchAvailability(currentDate);
+            updateOshibanaSymptom();
             updateDisplayInfo();
         }
+
+        // 押し花の相談の選択内容をselectedSymptomへ反映
+        function updateOshibanaSymptom() {
+            selectedSymptom = [];
+            if (selectedOshibanaDetail) selectedSymptom.push({ category: '押し花の相談', name: selectedOshibanaDetail });
+        }
+
 
         // --- 既存メニュー用選択ロジック ---
         function selectSymptom(button) {
@@ -1122,6 +963,13 @@
             const displayStyle = isBaind ? 'block' : 'none';
             document.getElementById('baindLabel1').style.display = displayStyle;
             document.getElementById('baindLabel2').style.display = displayStyle;
+
+            // Airリザーブで日時を予約するメニューはカレンダーを使わない
+            if (airReserveDateMenus.includes(selectedMenu)) {
+                document.querySelector('.calendar-container').style.display = 'none';
+                updateDisplayInfo();
+                return;
+            }
 
             // カレンダー表示
             document.querySelector('.calendar-container').style.display = 'block';
@@ -1386,8 +1234,6 @@
 
             // データ収集
             const formData = {
-                name: document.getElementById('name').value.trim(),
-                phone: document.getElementById('phone').value.trim(),
                 selectedMenu: selectedMenu,
                 details: selectedSymptom.length > 0 ? selectedSymptom.map(s => s.name).join(',') : '',
                 venue: document.getElementById('venue').value.trim(),
@@ -1397,15 +1243,8 @@
             };
 
             // バリデーション
-            if (!formData.name) { alert('お名前を入力してください。'); return; }
-            if (!formData.phone) { alert('電話番号を入力してください。'); return; }
             if (!selectedMenu) { alert('メニューを選択してください。'); return; }
 
-            // 注文予約の場合は予算チェック
-            if (selectedMenu === '注文予約' && selectedBudgetPrice === 0) {
-                alert('ご予算を選択してください。');
-                return;
-            }
             // 来店予約の場合は希望予算チェック
             if (selectedMenu === '来店予約') {
                 const raitenBudget = document.getElementById('raitenBudget').value.trim();
@@ -1414,14 +1253,21 @@
                     return;
                 }
             }
-            if (!selectedSymptom.length) { alert('詳細メニューを選択してください。'); return; }
-            if (!formData.dates) { alert('希望日時を選択してください。'); return; }
+            // 押し花の相談は日時をAirリザーブで予約するため、フォーム内の日時チェックは行わない
+            if (selectedMenu === '押し花の相談') {
+                if (!selectedOshibanaDetail) { alert('押し花の相談詳細を選択してください。'); return; }
+            } else {
+                if (!selectedSymptom.length) { alert('詳細メニューを選択してください。'); return; }
+                if (selectedMenu !== '来店予約' && !airReserveDateMenus.includes(selectedMenu) && !formData.dates) {
+                    alert('希望日時を選択してください。'); return;
+                }
+            }
 
             submitBtn.disabled = true;
             submitBtn.textContent = '送信中...';
 
             // メッセージ作成
-            let text = `【NARA予約フォーム】\n≪GIGI VERDE NARA≫\nお名前：${formData.name}\n電話番号：${formData.phone}\nコース：${formData.selectedMenu}`;
+            let text = `【NARA予約フォーム】\n≪GIGI VERDE NARA≫\nコース：${formData.selectedMenu}`;
 
             let finalUrl = '';
 
@@ -1429,36 +1275,32 @@
                 // 来店予約の場合（決済不要）
                 const raitenBudget = document.getElementById('raitenBudget').value.trim();
                 text += `\nメニュー：${formData.details},希望予算${raitenBudget}`;
-            } else if (selectedMenu === '注文予約') {
-                const typeName = selectedSymptom[0].name.replace(/\n/g, ''); // 花束 or アレンジメント
-                text += `\nメニュー：${formData.details},予算${selectedBudgetPrice}円`;
-
-                // URL取得ロジック
-                if (squareLinks[typeName] && squareLinks[typeName][selectedBudgetPrice]) {
-                    finalUrl = squareLinks[typeName][selectedBudgetPrice][selectedOptionPrice];
-                }
-            } else if (selectedMenu === 'フラワーレッスン') {
-                // レッスンの場合（決済リンクには飛ばさない）
-                text += `\nメニュー：${formData.details}`;
             } else {
+                // WEDDINGのご相談ほか（決済・外部遷移なし）
                 text += `\nメニュー：${formData.details}`;
                 if (formData.venue) text += `\n会場名：${formData.venue}`;
                 if (formData.weddingDate) text += `\n挙式日：${formData.weddingDate}`;
             }
 
-            text += `\n希望日時：\n${formData.dates}\nメッセージ：\n${formData.message}`;
+            // Airリザーブ予約ページへの誘導（対象メニューのみ）
+            if (!finalUrl && airReserveLinks[selectedMenu]) {
+                finalUrl = airReserveLinks[selectedMenu];
+            }
 
-            // 注文予約の場合のみ決済ステータスを追加
-            if (selectedMenu === '注文予約') {
-                text += `\n\n決済ステータス：決済完了待ち`;
+            // Airリザーブで日時を予約するメニューと来店予約は、希望日時行を出さない
+            if (airReserveDateMenus.includes(selectedMenu) || selectedMenu === '来店予約') {
+                text += `\nメッセージ：\n${formData.message}`;
+            } else {
+                text += `\n希望日時：\n${formData.dates}\nメッセージ：\n${formData.message}`;
             }
 
             // LINE送信処理
             liff.sendMessages([{ type: 'text', text: text }])
                 .then(() => {
-                    // Square決済への遷移判定
+                    // Airリザーブへの遷移判定
                     if (finalUrl) {
-                        if (confirm('予約内容を送信しました。\n続いて決済画面へ移動します。\n決済完了後、予約確定となります。')) {
+                        const confirmMsg = '予約内容を送信しました。\n続いて予約ページ（Airリザーブ）へ移動します。\nそちらで日時のご予約をお願いいたします。';
+                        if (confirm(confirmMsg)) {
                             liff.openWindow({
                                 url: finalUrl,
                                 external: true
