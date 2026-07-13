@@ -712,7 +712,8 @@
         };
 
         // 日時をAirリザーブ側で予約するメニュー（フォーム内カレンダーを使わない）
-        const airReserveDateMenus = ['押し花の相談'];
+        // 日時をフォーム内カレンダーで取らないメニュー（押し花=Airリザーブ / WEDDING=日時取得なし）
+        const airReserveDateMenus = ['押し花の相談', 'WEDDINGのご相談'];
 
         let visitCount = '';
         let selectedMenu = '';
@@ -822,13 +823,22 @@
         // Airリザーブへ遷移するメニューは、フォーム内で日時を選ばないため
         // 「希望日時」ラベルを案内文に差し替え、送信ボタン下にも案内を出す
         function updateDateSection() {
-            const isAirReserve = !!airReserveLinks[selectedMenu];
+            const isAirReserve = !!airReserveLinks[selectedMenu];       // 送信後Airリザーブへ遷移
+            const isNoCalendar = airReserveDateMenus.includes(selectedMenu); // フォーム内カレンダー不要
 
             const dateLabel = document.getElementById('dateLabel');
             if (dateLabel) {
-                dateLabel.innerHTML = isAirReserve
-                    ? '希望日時'
-                    : '希望日時 <span class="required">*</span>';
+                if (isAirReserve) {
+                    // 来店予約・押し花など：Airリザーブで日時予約（ラベルは残し必須マークは外す）
+                    dateLabel.innerHTML = '希望日時';
+                    dateLabel.style.display = 'block';
+                } else if (isNoCalendar) {
+                    // WEDDING（東京・奈良）：日時は取得しないため希望日時セクション自体を非表示
+                    dateLabel.style.display = 'none';
+                } else {
+                    dateLabel.innerHTML = '希望日時 <span class="required">*</span>';
+                    dateLabel.style.display = 'block';
+                }
             }
 
             const dateNote = document.getElementById('airReserveNote');
